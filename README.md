@@ -4,6 +4,14 @@
 https://cs50.harvard.edu/web/2020/projects/3/mail/ <br>
 This is the project 3 (Mail) for CS50's Web which need to design a front-end for an email client that makes API calls to send and receive emails within this web only (cannot send/receive email outside. The APIs are provided by the course and defined by Django, we need to write the code in Javascript to call the API by making different request (GET, PUT, POST) in order to make the web app able to send, view, archive, unarchive and reply the email via different API call
 
+#### Account:
+- Admin: 
+  - Account: admin
+  - password: admin
+- Normal user
+  - user123@alemail.com
+  - password: user123123
+
 ## Specification/Requirements
 - Send Mail: When a user submits the email composition form, add JavaScript code to actually send the email.
   - You’ll likely want to make a POST request to /emails, passing in values for recipients, subject, and body.
