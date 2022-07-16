@@ -6,8 +6,8 @@ This is the project 3 (Mail) for CS50's Web which need to design a front-end for
 
 #### Account:
 - Admin: 
-  - Account: admin
-  - password: admin
+  - Account: ale_mail_admin
+  - password: ale7280admin
 - Normal user
   - user123@alemail.com
   - password: user123123
