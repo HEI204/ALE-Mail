@@ -9,7 +9,7 @@
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light w-100 shadow min-vh-100">
                 <a href="{% url 'index' %}"
                     class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none mx-auto">
-                    <span class="fs-4">ALE-Mail</span>
+                    <span class="fs-4 fw-bold">ALE-Mail</span>
                 </a>
                 <hr>
                 <ul class="list-group list-group-flush justify-content-center">
@@ -44,17 +44,17 @@
         <div class="d-block d-md-none col ps-0 pe-0">
             <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
                 <button class="navbar-toggler me-0" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                    data-bs-target="#offcanvas-navbar" aria-controls="offcanvas-navbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <h3 class="my-auto mx-auto">ALE-Mail</h3>
+                <h3 class="my-auto mx-auto fw-bold"><a class="text-decoration-none text-black" href="{% url 'index' %}">ALE-Mail</a></h3>
                 <a class="text-decoration-none text-black pe-3 fs-5 compose"><i class="bi bi-pencil-square"></i></a>
             </nav>
 
-            <div class="offcanvas offcanvas-start w-75" tabindex="-1" id="offcanvasExample"
-                aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas offcanvas-start w-75" tabindex="-1" id="offcanvas-navbar"
+                aria-labelledby="offcanvas-navbar-label">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasExampleLabel"><span class="fw-bold" id="user">{{ request.user.email }}</span></h5>
+                    <h5 class="offcanvas-title" id="offcanvas-navbar-label"><span class="fw-bold" id="user">{{ request.user.email }}</span></h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                         aria-label="Close"></button>
                 </div>
