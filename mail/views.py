@@ -5,6 +5,7 @@ from django.db import IntegrityError
 from django.http import JsonResponse
 from django.shortcuts import HttpResponse, HttpResponseRedirect, render
 from django.urls import reverse
+from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import User, Email
@@ -149,9 +150,9 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "mail/login.html", {
-                "message": "Invalid email and/or password."
-            })
+            messages.error(
+                request, f"Invalid email and/or password.")
+            return render(request, "mail/login.html")
     else:
         return render(request, "mail/login.html")
 
@@ -169,9 +170,9 @@ def register(request):
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         if password != confirmation:
-            return render(request, "mail/register.html", {
-                "message": "Passwords must match."
-            })
+            messages.error(
+                request, f"Passwords must match.")
+            return render(request, "mail/register.html")
 
         # Attempt to create new user
         try:
@@ -179,9 +180,10 @@ def register(request):
             user.save()
         except IntegrityError as e:
             print(e)
-            return render(request, "mail/register.html", {
-                "message": "Email address already taken."
-            })
+            messages.error(
+                request, f"Email address already taken.")
+            return render(request, "mail/register.html")
+
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:

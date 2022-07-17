@@ -37,8 +37,6 @@ textarea {
 /* mailbox */
 .email {
     position: relative;
-    padding: 15px;
-    height: 60px;
     border-bottom: 1px solid rgb(220, 220, 220);
 }
 
@@ -60,11 +58,8 @@ textarea {
 
 @media screen and (min-width: 768px) {
     .emails-btn-groups {
-        position: absolute;
         display: flex;
-        justify-content: space-around;
-        right: 20px;
-        bottom: 12px;
+        justify-self: flex-end;
     }
     
     .emails-btn-groups > * {

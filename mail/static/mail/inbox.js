@@ -33,8 +33,13 @@ function load_mailbox(mailbox) {
     document.querySelector('#compose-view').style.display = 'none';
 
     // Show the mailbox name
+    const emailsContainer = document.createElement("div");
+    emailsContainer.className = "container-fluid";
+
     const emailsView = document.querySelector('#emails-view');
     emailsView.innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
+    
+    emailsView.appendChild(emailsContainer);
 
     // fetch all the emails in the corrensponding mailbox
     fetch(`/emails/${mailbox}`)
@@ -45,26 +50,32 @@ function load_mailbox(mailbox) {
                 let div = document.createElement("div")
 
                 div.id = email["id"];
-                div.className = "email "
+                div.className = "email row p-2 p-lg-3 flex-column flex-md-row align-items-md-center "
                 div.className += email["read"] ? "read" : "unread";
+
+                const test = email['recipients'].map(recipient => 
+                    recipient.slice(0,recipient.indexOf("@"))
+                )
+                
+                console.log(test)
 
                 if (mailbox == "sent") {
                     div.innerHTML = `
-                                <span class="recipients col-3"> ${email['recipients']} </span>
-                                <span class="subject col-5"> ${email['subject']} </span>
-                                <span class="timestamp col-3"> ${email['timestamp']} </span>
+                                <span class="recipients col-md-2"> ${test} </span>
+                                <span class="subject col-md-4 text-truncate"> ${email['subject']} </span>
+                                <span class="timestamp col-md-2"> ${email['timestamp']} </span>
                                 `;
                 }
                 else {
                     div.innerHTML = `
-                                <span class="sender col-3"> ${email['sender']} </span>
-                                <span class="subject col-5"> ${email['subject']} </span>
-                                <span class="timestamp col-3"> ${email['timestamp']} </span>
+                                <span class="sender col-md-2"> ${email['sender'].slice(0,email['sender'].indexOf("@"))} </span>
+                                <span class="subject col-md-4 text-truncate"> ${email['subject']} </span>
+                                <span class="timestamp col-md-2"> ${email['timestamp']} </span>
                                 `;
                 }
 
                 const btnGroups = document.createElement("div");
-                btnGroups.className = "emails-btn-groups";
+                btnGroups.className = "emails-btn-groups col-md-4";
 
                 if (mailbox != "sent") {
                     const archiveBtn = document.createElement("button");
@@ -94,7 +105,7 @@ function load_mailbox(mailbox) {
                     view_email(email["id"])
                 })
 
-                emailsView.appendChild(div);
+                emailsContainer.appendChild(div);
             })
         })
 }
@@ -123,18 +134,13 @@ function view_email(id) {
     document.querySelector('#compose-view').style.display = 'none';
 
     const emailView = document.querySelector('#email-view');
+    while (emailView.firstChild) {
+        emailView.removeChild(emailView.firstChild);
+    }
 
     // fetch the single email based on the id and show its detail
     fetch(`/emails/${id}`)
-        .then(response => {
-            while (emailView.firstChild) {
-                emailView.removeChild(emailView.firstChild);
-            }
-
-            return response.json()
-        }
-        )
-
+        .then(response => response.json())
         .then(email => {
             const subject = document.createElement("h3");
             subject.innerHTML = email["subject"];
