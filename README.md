@@ -14,6 +14,8 @@ This is the project 3 (Mail) for CS50's Web which need to design a front-end for
   - Once the email has been sent, load the user’s sent mailbox.
  
 - Mailbox: When a user visits their Inbox, Sent mailbox, or Archive, load the appropriate mailbox.
+![image](https://user-images.githubusercontent.com/78290169/183333497-481bcbe6-5541-41ea-8f4a-c8a8cb60f138.png)
+
   - You’ll likely want to make a GET request to /emails/<mailbox> to request the emails for a particular mailbox.
   - When a mailbox is visited, the application should first query the API for the latest emails in that mailbox.
   - When a mailbox is visited, the name of the mailbox should appear at the top of the page (this part is done for you).
