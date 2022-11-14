@@ -131,7 +131,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
 # Django CSRF
-CSRF_TRUSTED_ORIGINS = ['https://ale-mail-production.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['https://ale-mail-production.up.railway.app']
 
 
 # Configure Django App for Heroku.
